@@ -1,6 +1,7 @@
 levis:
   name: "nginx-levis"
   deployment:
+    enableHealthCheck: false
     containers:
       image: "nginx"
       port: 80
