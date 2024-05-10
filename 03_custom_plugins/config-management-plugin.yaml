@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name:  levis-argocd-plugin
+  namespace: argocd
+data:
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: levis-argocd-plugin
+    spec:
+      version: v1.0
+      init: 
+        command: ["bash", "-c"]
+        args: ["find . -name '*.yaml' -not -path './manifests/*' > yaml_files; while read yaml_file; do levis create -f $yaml_file -o manifests/$yaml_file; echo --- >> manifests/$yaml_file ; done < yaml_files"]
+      generate:
+        command: ["bash", "-c"]
+        args: ["find manifests -name '*.yaml' -type f -exec cat {} +"]

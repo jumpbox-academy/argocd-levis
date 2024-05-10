@@ -1,14 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: k8s-default
+  name: levis
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: git@github.com:jumpbox-academy/argocd-levis
     targetRevision: main
-    path: deployment/default
+    path: deployment/levis
+    plugin:
+      name: levis-argocd-plugin
   destination:
     server: https://kubernetes.default.svc
     namespace: default
+  syncPolicy:
+    automated:
+      prune: true
