@@ -1,8 +1,8 @@
 levis:
-  name: "nginx"
+  name: "nginx-levis"
   deployment:
     containers:
-      image: "nginx"
+      image: "nginx-levis"
       port: 80
   service:
     enabled: true
