@@ -1,7 +1,4 @@
-# argocd-levis
-
-## Config insecure server via `argocd-cmd-params-cm.yaml`
-```yaml
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-cmd-params-cm
@@ -12,8 +9,3 @@ metadata:
 data:
   # Run server without TLS
   server.insecure: "true"
-```
-
-## Incase using Ingress via Proen Cloud
-please sign domain dns 
-
