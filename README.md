@@ -38,7 +38,7 @@ kubectl apply -f 01_installation/03_deployment-patch.yaml -n argocd
 skip this way when you use `without configmap way`
 
 ```bash
-kubectl apply -f 01_installation/03-2_deployment-patch-mount-cm -f 0X_custom_plugins -n argocd
+kubectl apply -f 01_installation/03-2_deployment-patch-mount-cm -f 0X_custom_plugin -n argocd
 ```
 
 **3. Install Ingress**
