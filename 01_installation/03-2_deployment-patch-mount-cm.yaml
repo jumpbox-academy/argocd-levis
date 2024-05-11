@@ -262,9 +262,6 @@ spec:
           name: helm-working-dir
         - mountPath: /home/argocd/cmp-server/plugins
           name: plugins
-        # - name: levis-tools
-        #   subPath: levis
-        #   mountPath: /usr/local/bin/levis
       - name: levis-plugin
         image: sikiryl/levis:1.7.0-beta # This can be off-the-shelf or custom-built image
         command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
@@ -278,11 +275,11 @@ spec:
             name: var-files
           - mountPath: /home/argocd/cmp-server/plugins
             name: plugins
-          # - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-          #   subPath: plugin.yaml
-          #   name: levis-argocd-plugin
-          # - name: levis-tools
-          #   mountPath: /tmp
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: plugin.yaml #please apply 04_custom_plugins
+            name: levis-argocd-plugin
+          - name: levis-tools
+            mountPath: /tmp
       initContainers:
       - command:
         - /bin/cp
@@ -303,24 +300,13 @@ spec:
         volumeMounts:
         - mountPath: /var/run/argocd
           name: var-files
-      # - name: levis
-      #   image: ghcr.io/jumpbox-academy/levis:1.6.0-beta
-      #   securityContext:
-      #     runAsNonRoot: true
-      #     runAsUser: 999
-      #   command: ["sh","-c"]
-      #   args: 
-      #   - cp /opt/levis /tmp/levis
-      #   volumeMounts:
-      #   - name: levis-tools
-      #     mountPath: /tmp
       serviceAccountName: argocd-repo-server
       volumes:
-      # - configMap:
-      #     name: levis-argocd-plugin
-      #   name: levis-argocd-plugin
-      # - name: levis-tools
-      #   emptyDir: {}
+      - configMap:
+          name: levis-argocd-plugin
+        name: levis-argocd-plugin
+      - name: levis-tools
+        emptyDir: {}
       - configMap:
           name: argocd-ssh-known-hosts-cm
         name: ssh-known-hosts

@@ -4,7 +4,7 @@ metadata:
   name: argoproj-ssh-creds
   namespace: argocd
   labels:
-    argocd.argoproj.io/secret-type: repo-creds
+    argocd.argoproj.io/secret-type: repo-creds #this argocd will monitoring this label
 stringData:
   url: git@github.com:jumpbox-academy
   type: helm

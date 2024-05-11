@@ -10,7 +10,7 @@ data:
     metadata:
       name: levis-argocd-plugin
     spec:
-      version: v1.0
+      version: levis-v1.7.0-beta
       init: 
         command: ["sh"]
         args: [-c, 'find . -name "*.yaml" -not -path "./manifests/*" > yaml_files; while read yaml_file; do /tmp/levis create -f $yaml_file -o manifests/$yaml_file; echo --- >> manifests/$yaml_file ; done < yaml_files']
