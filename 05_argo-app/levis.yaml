@@ -10,7 +10,7 @@ spec:
     targetRevision: main
     path: deployment/levis
     plugin:
-      name: levis-argocd-plugin-v1.0
+      name: levis-v1.7.0-beta
   destination:
     server: https://kubernetes.default.svc
     namespace: default
